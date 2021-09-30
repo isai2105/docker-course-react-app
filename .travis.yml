@@ -29,6 +29,6 @@ deploy:
   on:
   # anythime we push code to the master branch, it is time to deploy.
   branch: master
-access_key_id: "$AWS_ACCESS_KEY"
-secret_access_key:
-  secure:: "$AWS_SECRET_KEY"
+
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
