@@ -10,6 +10,9 @@ RUN npm run build
 # RUN Phase
 # Just by adding a From statement, Docker understand that the previous phase terminates as soon as this starts
 FROM nginx
+# This does nothing on local or dev environments
+# AWS Elastic Beanstalk maps this port when finding the following config
+EXPOSE 80
 # /app/build is where things get created in the previous step
 # Accodring to the Nginx documentation, anything inside '/usr/share/nginx/html' will be served automatically
 COPY --from=builder /app/build /usr/share/nginx/html
