@@ -30,5 +30,6 @@ deploy:
   # anythime we push code to the master branch, it is time to deploy.
   branch: master
 
+# These keys were setup on TRavis CI as environment variables
 access_key_id: $AWS_ACCESS_KEY
 secret_access_key: $AWS_SECRET_KEY
