@@ -12,3 +12,23 @@ script:
   # npm run test waits for input (just as in the terminal)
   # so we need a way to run it and having it exit when the test executions run
   - docker run -e CI=true isai2105/docker-react npm run test -- --coverage
+
+deploy:
+  # predefined provider in Travis CI
+  provider: elasticbeanstalk
+  # the region is specified inside AWS .. can be seen inside th url of our beanstalk app
+  region: "us-west-2"
+  app: "Docker React"
+  env: "Dockerreact-env"
+  # all the files for the app will be inside a S3 bucket
+  # from there, Elastic beanstalk deploys that compressed file to the server
+  # search for S3, ans search for one that matched elasticbeanstalk + name of the region
+  bucket_name: "elasticbeanstalk-us-west-2-168791720217"
+  # equals to app property value, by default
+  bucket_path: "Docker React"
+  on:
+  # anythime we push code to the master branch, it is time to deploy.
+  branch: master
+access_key_id: "$AWS_ACCESS_KEY"
+secret_access_key:
+  secure:: "$AWS_SECRET_KEY"

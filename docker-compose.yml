@@ -1,26 +1,8 @@
 version: '3'
-
 services:
   web:
-    # notice how we cannot use build . because there is no Dockerfile
-    # instead, we 
-    build: 
-      # if we had nestes the react project inside another folder, we would need to specify it here
+    build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.prod
     ports:
-      - "3000:3000"
-    volumes:
-      - /app/node_modules
-      # the dot represents current working directory, this is equivalent to $(pwd):/app on Docker Run
-      - .:/app
-  # A second service solely for executing tests
-  # Equivalent to: docker run -it 520fd29e4044cc5a78f364493 npm run test
-  tests:
-    build: 
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /app/node_modules
-      - .:/app
-    command: ["npm", "run", "test"]
+      - '80:80'
